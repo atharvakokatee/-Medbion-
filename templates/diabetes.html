@@ -1,0 +1,120 @@
+{% extends 'layout.html' %}
+{% block body %}
+
+<div class="shadow-lg" style="width: 80%; margin: 0 auto; background-color: white; padding: 20px 0;">
+    <div class="container">
+        <h1><strong><a href="#" style="color: rgb(0, 136, 169);" class="h1">#</a> Diabetes Early Signs and Symptoms in Women</strong></h1>
+        <p class="text-muted h6">Published on March 31, 2020</p>
+        <hr class="my-4">
+        <div>
+                <p class="text-justify">Diabetes mellitus is a metabolic disorder that occurs when your blood sugar (glucose), is too high (hyperglycemia). Glucose is what the body uses for energy, and the pancreas produces a hormone called insulin that helps convert the glucose from the food you eat into energy. When the body does not produce enough insulin - or does not any at all - the glucose does not reach your cells to be used for energy. This results in type 1 and 2 diabetes.
+                    <div class="img-thumbnail bg-light" style="width: 400px; height: 100%; padding-bottom: 0; float: right; margin-left: 20px;">
+                        <a href="/static/images/womandoctor.png">
+                            <img src="/static/images/womandoctor.png" alt="Nature" style="width:100%">
+                            <div class="caption">
+                              <p style="color: black; margin: 10px; font-size: 16px;" class="text-justify">Diabetes is a great example whereby, giving the patient the tools, you can manage yourself very well.</p>
+                            </div>
+                        </a>
+                    </div>
+                </p>
+                <p class="text-justify">
+                    According to the CDC, 30 million (9.4% of the US population), and 7.2 million Americans don't know that they have diabetes.</p>
+                <p class="text-justify font-weight-bold">There are two types of diabetes:</p>
+                <ul style="padding: 0;">
+                <li style="color: #24252A;"><p class="text-justify"><strong>Type 1 diabetes</strong> is an autoimmune condition in which the body does not produce insulin because the body's immune system attacks insulin-producing cells from the pancreas called beta cells.</p></li>
+                <li style="color: #24252A;"><p class="text-justify"><strong>Type 2 diabetes</strong> is a condition in which cells cannot use blood sugar (glucose) efficiently for energy. This occurs when blood sugar gets too high over time, and the cells become insensitive to insulin.</p></li>
+                </ul>
+                <p class="text-justify"><strong>Prediabetes</strong> (sometimes spelled pre-diabetes) is a condition that often precedes type 2 diabetes. Prediabetes is when your blood sugar is higher than normal, but not quite high enough to be diagnosed with diabetes. Prediabetes does not usually have any symptoms so there may be no warning signs. A blood test can confirm if you have prediabetes.</p>
+                <p class="text-justify">More than 84 million American adults have prediabetes, and about 90% of people don't know that they have it. If a person does not change their diet and lifestyle, prediabetes can become type 2 diabetes within 5 years.
+                    Here is our <mark style="background-color: rgba(0, 136, 169,0.25);">diabetes prediction algorithm</mark> for females who are vulnerable to it:
+                </p>
+        </div>
+        <div class="card shadow-sm" style="padding: 20px; margin-bottom: 30px;">
+        <form action="{{ url_for('predict_diabetes') }}" method="POST">
+            <div class="form-group">
+                <fieldset disabled>
+                    <label for="userID">UserID</label>
+                    <input type="text" class="form-control form-rounded" id="userID" placeholder="#UserID" name="userID" value="#DIA000">
+                </fieldset>
+              </div>
+            <div class="form-group">
+              <label for="Name">Name</label>
+              <input type="text" class="form-control form-rounded" id="Name" aria-describedby="Help" placeholder="Enter Name" name="name">
+              <small id="Help" class="form-text text-muted">We'll never share your details with anyone else.</small>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="Pregnancies">Pregnancies</label>
+                        <input type="number" class="form-control form-rounded" id="Pregnancies" placeholder="120" name="pregnancies">
+                      </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="Glucose">Glucose</label>
+                        <input type="number" class="form-control form-rounded" id="Glucose" placeholder="120" name="glucose">
+                      </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="BloodPressure">Blood Pressure</label>
+                        <input type="number" class="form-control form-rounded" id="BloodPressure" placeholder="120" name="bp">
+                      </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="SkinThickness">Skin Thickness</label>
+                        <input type="number" class="form-control form-rounded" id="SkinThickness" placeholder="120" name="skinthickness">
+                      </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="Insulin">Insulin</label>
+                        <input type="number" class="form-control form-rounded" id="Insulin" placeholder="120" name="insulin">
+                      </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="BMI">BMI</label>
+                        <input type="number" class="form-control form-rounded" id="BMI" placeholder="120" name="bmi">
+                      </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="DPF">Diabetes Pedigree Function</label>
+                        <input type="number" class="form-control form-rounded" id="DPF" placeholder="120" name="dpf">
+                      </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="Age">Age</label>
+                        <input type="number" class="form-control form-rounded" id="Age" placeholder="120" name="age">
+                      </div>
+                </div>
+            </div>
+              <div class="form-group">
+                <label for="CM">Classification Model</label>  
+                <select id="CM" class="custom-select form-rounded" name="model">
+                    <option selected><=====Select Classification Model=====></option>
+                    <option value="1">Logistic Regression</option>
+                    <option value="2">K-Nearest Neighbors</option>
+                    <option value="3">Support Vector Machine</option>
+                    <option value="4">Kernel SVM</option>
+                    <option value="5">Naive Bayes</option>
+                    <option value="6">Decision Tree Classification</option>
+                    <option value="7">Random Forest Classification</option>
+                  </select>
+              </div>            
+            <button type="submit" id="submitForm">Submit</button>
+          </form>
+          </div>
+    </div>
+</div>
+
+{% endblock %}
